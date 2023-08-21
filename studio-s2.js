@@ -1,5 +1,3 @@
-
-
 function biggie_size(x){
     return (x+4);
 }
@@ -30,9 +28,11 @@ function last_combo(x){
     return x % 10;
 }
 
-function other_combo(x){
-    return (x - last_combo(x))/10;
+// function other_combo(x){
+//     return (x - last_combo(x))/10;
     
+// }
+
+function other_combo(x){
+    return math_floor(x / 10);
 }
-
-
