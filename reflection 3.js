@@ -8,4 +8,10 @@ function my_sum(n){
 my_sum(4);
 
 // qn5
-function sum
+function sum(term, a, next, b, result) {
+    return a > b
+       ? result
+       : sum(term, next(a), next, b, result + term(a));
+}
+
+sum(x => x, 1, y=> y + 1, 6, 0);
