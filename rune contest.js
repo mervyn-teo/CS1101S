@@ -50,20 +50,22 @@ stack_frac,
 stackn,
 translate} from "rune";
 
-function helper(r, y, rune){
-    return translate(math_sqrt(r * r - y * y), y, rune);
+function stack_hor(rune, n, count, result, layer){ //n defalt 1
+    return n === count + 1
+        ? translate(1*(layer-count)/layer , 0 ,beside_frac(count / layer, result, blank))
+        : stack_hor(rune, n + 1, count, beside_frac(1/n, rune, result), layer);
 }
 
-function stepper(y, steps, yend, r, rune){
-    overlay(helper(r, y, rune), rune);
-    return y >= yend
-        ? helper(r, yend, rune)
-        : stepper(y + steps, steps, yend, r , rune);
+function stack_vert(hor, rune, n, layer, result){ // rune should be result of stack hor
+    return n === layer + 1
+        ? result
+        : stack_vert(hor, rune, n + 1, layer, stack_frac((n-1) / n, result, hor(rune, 1, n, blank, layer)));
 }
 
-function runes_contest() {
-    return stepper(0, 0.1, 1, 0.5, scale(0.1, circle));
-} 
+
+// function runes_contest() {
+//     return stack_vert(triangle, 0, 4, blank);
+// } 
 
 // Keep this show function call
-show(runes_contest());
+show(stack_vert(stack_hor, heart, 1, 2, blank));
