@@ -63,9 +63,10 @@ function stack_vert(hor, rune, n, layer, result){ // rune should be result of st
 }
 
 
-// function runes_contest() {
-//     return stack_vert(triangle, 0, 4, blank);
-// } 
+function runes_contest() {
+    return stack_vert(stack_hor, heart, 1, 60, blank);
+} 
 
-// Keep this show function call
-show(stack_vert(stack_hor, heart, 1, 400, blank));
+//Keep this show function call
+show(runes_contest());
+
