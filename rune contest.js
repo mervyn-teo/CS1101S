@@ -53,7 +53,7 @@ translate} from "rune";
 function stack_hor(rune, n, count, result, layer){ //n defalt 1
     return n === count + 1
         ? translate(1*(layer-count)/layer , 0 ,beside_frac(count / layer, result, blank))
-        : stack_hor(rune, n + 1, count, beside_frac(1/n, rune, result), layer);
+        : stack_hor(rune, n + 1, count, beside_frac(1/n, color(rune, 1, n/layer, (layer-n)/layer), result), layer);
 }
 
 function stack_vert(hor, rune, n, layer, result){ // rune should be result of stack hor
@@ -68,4 +68,4 @@ function stack_vert(hor, rune, n, layer, result){ // rune should be result of st
 // } 
 
 // Keep this show function call
-show(stack_vert(stack_hor, heart, 1, 2, blank));
+show(stack_vert(stack_hor, heart, 1, 400, blank));
