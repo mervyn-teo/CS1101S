@@ -15,44 +15,39 @@ function curves_contest(){
             : t < 4/6 
             ? 0 
             : t < 5/6 
-            ? 255 * (5 -(t * 6))
+            ? 255 * ((t * 6) - 5)
             : 255;
         
     }
     function g(t){
-        return t < 1/5 
-            ? 255 * t / 5 
-            : t < 2/5 
+        return t < 1/6 
+            ? 255 * t * 6 
+            : t < 2/6 
             ? 255 
-            : t < 3/5 
-            ? 255 * (4 - (t * 5)) 
-            : t < 4/5 
-            ? 255 * (( t / 0.2) - 3)
-            : 255;
+            : t < 3/6 
+            ? 255 * (4 - (t * 6)) 
+            : 0;
         
     }
     function bl(t){
-        return t < 1/5 
-            ? 255 
-            : t < 2/5 
-            ? 255 * (1 - (t / 0.2)) 
-            : t < 3/5 
+        return t < 2/6 
             ? 0 
-            : t < 4/5 
-            ? 255 * (( t / 0.2) - 3)
-            : 255;
+            : t < 3/6 
+            ? 255 * ((t / 0.2) - 3) 
+            : t < 5/6 
+            ? 255 
+            : 255 * (6 - t * 6);
         
     }
 
-    return draw_connected_full_view(10000)(t => make_color_point(x(2 * math_PI * t), 
-                                                                 y(2 * math_PI * t),
-                                                                 r(t),
-                                                                 0,
-                                                                 0
-                                                                 ));
+    return (t => make_color_point(x(2 * math_PI * t), 
+                                  y(2 * math_PI * t),
+                                  r(t),
+                                  g(t),
+                                  bl(t)));
     }
     
-    return donut(300); //animate_curve(10, 3, draw_connected_full_view, donut);
+    return animate_curve(10, 3, draw_connected_full_view, donut);
 }
 
 // Keep this function call
