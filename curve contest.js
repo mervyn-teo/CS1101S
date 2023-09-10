@@ -1,30 +1,28 @@
-import {draw_connected_full_view, make_color_point, animate_curve} from "curve";
+import {unit_circle, draw_connected_full_view, make_color_point, animate_curve, rotate_around_origin} from "curve";
 
 
 function curves_contest(){
     function donut(b){
-//    const b = 30;
-//    const new_t = t/100;
-    const x = t => math_cos(t) + math_cos(b * t)/2 + math_sin(t)/3;
-    const y = t => math_sin(t) + math_sin(b * t)/2 + math_cos(t)/3;
+    const x = t => math_cos(t) + math_cos(10*b*t)/2 + math_sin(t)/3;
+    const y = t => math_sin(t) + math_sin(10*b*t)/2 + math_cos(t)/3;
     function r(t){
         return t < 1/6 
             ? 255 
             : t < 2/6 
-            ? 255 * (3 - (t * 6)) 
-            : t < 4/6 
+            ? 255 * (2 - (t * 6)) 
+            : t < 4/6  
             ? 0 
             : t < 5/6 
-            ? 255 * ((t * 6) - 5)
+            ? 255 * ((t * 6) - 4)
             : 255;
         
     }
     function g(t){
         return t < 1/6 
             ? 255 * t * 6 
-            : t < 2/6 
-            ? 255 
             : t < 3/6 
+            ? 255 
+            : t < 4/6 
             ? 255 * (4 - (t * 6)) 
             : 0;
         
@@ -33,7 +31,7 @@ function curves_contest(){
         return t < 2/6 
             ? 0 
             : t < 3/6 
-            ? 255 * ((t / 0.2) - 3) 
+            ? 255 * ((t * 6) - 2) 
             : t < 5/6 
             ? 255 
             : 255 * (6 - t * 6);
@@ -44,11 +42,32 @@ function curves_contest(){
                                   y(2 * math_PI * t),
                                   r(t),
                                   g(t),
-                                  bl(t)));
-    }
+                                  bl(t)
+                )
+    );
+    } 
     
-    return animate_curve(10, 3, draw_connected_full_view, donut);
+    return animate_curve(10, 60, draw_connected_full_view(6000), donut);
 }
 
 // Keep this function call
 curves_contest();
+
+
+//animate_curve(10, 60, draw_connected_full_view(3), t => (rotate_around_origin(0, 0, 2*t)(unit_circle)));
+                                                                                                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
