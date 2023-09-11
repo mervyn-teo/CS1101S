@@ -11,21 +11,22 @@ every_second(list(0,1,2,3,4,5,6,7));
 
 
 function sum(item){
+    
     function odd(item){
-        return is_null(tail(item))
+        return is_null(item) || is_null(tail(item))
         ? 0 
-        : is_null(tail(tail(item)))
-        ? head(tail(item))
         : head(tail(item)) + odd(tail(tail(item)));
     }
+    
         function even(item){
-        return is_null(tail(item))
+        return is_null(item) || is_null(tail(tail(item)))
         ? head(item)
-        : is_null(tail(tail(item)))
-        ? 0
         : head(item) + even(tail(tail(item)));
     }
+    
     return list(even(item), odd(item));
+
+    
 }
 
 sum(list(0,1,2,3,4,5,6,7));
