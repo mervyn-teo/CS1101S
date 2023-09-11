@@ -19,7 +19,7 @@ function sum(item){
     }
     
         function even(item){
-        return is_null(item) || is_null(tail(tail(item)))
+        return is_null(item) || is_null(tail(item))
         ? head(item)
         : head(item) + even(tail(tail(item)));
     }
@@ -29,4 +29,4 @@ function sum(item){
     
 }
 
-sum(list(0,1,2,3,4,5,6,7));
+sum(list(0));
