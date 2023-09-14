@@ -8,9 +8,15 @@ function flatten_list(lst){
             ? l2 
             : pair(head(l1), helper(tail(l1), l2));
     }
-    return accumulate(helper, null, lst);
+    return accumulate(helper/*append can be used here to function better*/, null, lst);
 }
-
+/*
+function flatten_list(){
+    return is_null(xs)
+        ? null 
+        : append(head(xs), flatten_list(tail(xs)));
+}
+*/
 
 const LoL = list(list(1, 2), list(3, 4, 5, 6), null, list(7, 8, 9));
 flatten_list(LoL); // Returns list(1, 2, 3, 4, 5, 6, 7, 8, 9)
@@ -36,8 +42,11 @@ flatten_list(LoL); // Returns list(1, 2, 3, 4, 5, 6, 7, 8, 9)
 //qn 3
 
 function accumulate_tree(f, op, initial, tree) {
+    function help(x, y){
+        return op(accumulate((a, b) => op(f(a), b), initial, x), y);
+    }
     return accumulate(
-             /* your answer here */,
+             help,
              initial,
              tree);
 }
