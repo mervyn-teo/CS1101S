@@ -10,10 +10,12 @@ my_map(x => x + 1, list(1, 2, 3));
 // returns a list with duplicate elements removed. The order of the elements in the returned
 // list does not matter. Use filter in your function.
 function remove_duplicates(lst) {
-    
+    return is_null(lst)
+        ? null
+        : pair(head(lst), remove_duplicates(filter(x => !equal(head(lst), x), tail(lst))));
 }
-Example calls:
-remove_duplicates(list(1, 2, 3, 4, 4, 3, 2, 1, 2));
+//Example calls:
+display(remove_duplicates(list(1, 2, 3, 4, 4, 3, 2, 1, 2)));
 // Result: list(1, 2, 3, 4)
 remove_duplicates(list("a", "x", "b", "c", "c", "b", "d"));
 // Result: list("a", "x", "b", "c", "d")
