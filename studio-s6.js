@@ -41,7 +41,7 @@ function makeup_amount(x, coins) {
         // for the remaining amount.
         const combi_B = makeup_amount(x - head(coins), tail(coins));
         // Combinations that use the head coin.
-        const combi_C = map(l => pair(head(coins), l), combi_B);
+        const combi_C = map(m => pair(head(coins), m), combi_B);
         return append(combi_A, combi_C);
     }
 }
