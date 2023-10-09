@@ -2,15 +2,13 @@
 > Coding is the joy of relieving pain and suffering -- probably me when I was doing assignments
 
 # Studio/Tutorial
-[Studio S2](https://github.com/mervyn-teo/CS1101S/blob/main/studio-s2.js)  
-[Studio S3](https://github.com/mervyn-teo/CS1101S/blob/main/studios3_inclass.js)  
-[Studio S4](https://github.com/mervyn-teo/CS1101S/blob/main/studio-s4.js)  
+[Studio] (https://github.com/mervyn-teo/CS1101S/tree/main/Studio)
 
 # Mission
-[Mission 3](https://github.com/mervyn-teo/CS1101S/blob/main/mission3.js)  
+[Mission](https://github.com/mervyn-teo/CS1101S/tree/main/Mission)  
 
 # Reflection
-[Reflection 3](https://github.com/mervyn-teo/CS1101S/blob/main/reflection%203.js)  
+[Reflection](https://github.com/mervyn-teo/CS1101S/tree/main/Reflection)  
 
 # Contest
-[Rune contest(Beautiful runes)](https://github.com/mervyn-teo/CS1101S/blob/main/rune%20contest.js)  
+[contest](https://github.com/mervyn-teo/CS1101S/tree/main/Contest)  
