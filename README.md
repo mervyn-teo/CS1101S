@@ -2,7 +2,7 @@
 > Coding is the joy of relieving pain and suffering -- probably me when I was doing assignments
 
 # Studio/Tutorial
-[Studio] (https://github.com/mervyn-teo/CS1101S/tree/main/Studio)
+[Studio](https://github.com/mervyn-teo/CS1101S/tree/main/Studio)
 
 # Mission
 [Mission](https://github.com/mervyn-teo/CS1101S/tree/main/Mission)  
