@@ -1,23 +1,34 @@
 const motor_C = ev3_motorC();
 const motor_D = ev3_motorD();
-let buffer = 10;    //time buffer for ev3_pause function
-function turn_left(a){ //a is in degrees
-    ev3_runToRelativePosition(motor_C, a / 90 * 250, 250);
-    ev3_runToRelativePosition(motor_D, a / 90 * -250, 250);
-    ev3_pause(5000);
+
+ev3_motorSetStopAction(motor_C, "hold");
+ev3_motorSetStopAction(motor_D, "hold");
+
+//WHEELS
+const diameter = 56;
+const circumference = math_PI * diameter; 
+const dist_between_wheels = (215 + 165)/2; 
+const turn_circumference = math_PI * dist_between_wheels;
+//outside 194, inside 136
+
+//HELPER FUNCTIONS
+function distance_to_rev(distance) {
+    //returns degrees to run distance (mm) forward
+    return 360*distance/circumference;
 }
 
-function turn_right(a){ //a is in 90 degree
-    ev3_runToRelativePosition(motor_C, a / 90 * -250, 250);
-    ev3_runToRelativePosition(motor_D, a / 90 * 250, 250);
-    ev3_pause(5000);
+function run_forward(distance) {
+    ev3_runToRelativePosition(motor_C, distance_to_rev(distance), 250);
+    ev3_runToRelativePosition(motor_D, distance_to_rev(distance), 250);
+    ev3_pause(2000);
 }
 
-function run_forward(distance) {//distance is in cm
-    ev3_runToRelativePosition(motor_C, distance*17, 250);
-    ev3_runToRelativePosition(motor_D, distance*17, 250);
-    ev3_pause(5000);
+function turn_right(a){ //a is multiple of 90 degree
+    ev3_runToRelativePosition(motor_C, a*distance_to_rev(turn_circumference/4), 250);
+    ev3_runToRelativePosition(motor_D, a*-distance_to_rev(turn_circumference/4), 250);
+    ev3_pause(2000);
 }
+
 
 // Pt. 1
 ev3_speak("hello world");
@@ -26,12 +37,13 @@ ev3_speak("hello world");
 run_forward(10);
 
 // Pt.3
-turn_left(90);
+turn_left(1);
 
 // Pt.4
-run_forward(10);
-turn_left(90);
-run_forward(5);
-turn_right(90);
+run_forward(100);
+turn_right(-1);
+run_forward(50);
+turn_right(1);
+run_forward(150);
 
 
