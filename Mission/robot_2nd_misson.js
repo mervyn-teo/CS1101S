@@ -37,7 +37,7 @@ function ultra_dist(){
 }//the distance ultrasound sensor senses
 
 function check_obsticle(){//Check if the robot is facing obsticle
-    if (ultra_dist() > 30){
+    if (ultra_dist() > 35){
         return false;
     } else{
         return true;
@@ -70,8 +70,20 @@ function around(){
     run_forward(-30);
     if (math_random() < 0.5){
         turn_left(1);
+        let is_blocked = true;
+        while (is_blocked){
+            run_forward(10);
+            turn_left(-1);
+            is_blocked = check_obsticle();
+        }
+        around();
     } else{
         turn_left(-1);
+        let is_blocked = true;
+        while (is_blocked){
+            run_forward(10);
+            turn_left(1);
+            is_blocked = check_obsticle();
     }
     
     
