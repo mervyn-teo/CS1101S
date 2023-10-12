@@ -1,7 +1,9 @@
-function make_withdraw(balance) {
-
-    function withdraw(amount) {
-        if (balance >= amount) {
+function make_withdraw(balance, password) {
+    
+    function withdraw(amount,pwd) {
+        if (pwd !== password) {
+            return "Wrong password; no withdraw";
+        }else if(balance >= amount) {
             balance = balance - amount;
             return balance;
         } else {
@@ -11,7 +13,6 @@ function make_withdraw(balance) {
     return withdraw;
 }
 
-const W1 = make_withdraw(100);
-W1(40);
-W1(40);
-W1(40);
+const acc = make_withdraw(100, "my_password");
+acc(30, "his_passcode"); // returns "Wrong password; no withdraw"
+acc(30, "my_password"); // returns 70
