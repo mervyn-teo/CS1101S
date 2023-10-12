@@ -29,7 +29,7 @@ function run_forward(distance) {
 function turn_left(a){ //a is multiple of 90 degree
     ev3_runToRelativePosition(motor_C, a*distance_to_rev(turn_circumference/4), 250);
     ev3_runToRelativePosition(motor_D, a*-distance_to_rev(turn_circumference/4), 250);
-    ev3_pause(2000);
+    ev3_pause(a * -distance_to_rev(turn_circumference / 4) / 250 * 1000);
 }//turn a * 90 degrees leftwards 
 
 function ultra_dist(){
