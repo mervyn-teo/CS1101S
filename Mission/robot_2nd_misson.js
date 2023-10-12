@@ -32,22 +32,21 @@ function turn_left(a){ //a is multiple of 90 degree
 }
 
 function ultra_dist(){
-    return ev3_ultrasonicSensorDistance(ultra_sound) * multiplier);
+    return ev3_ultrasonicSensorDistance(ultra_sound * multiplier);
 }
 
 // Qn.1
-display(ev3_ultrasonicSensorDistance(ultra_sound) * multiplier)
+display(ev3_ultrasonicSensorDistance(ultra_sound * multiplier));
 
 // Qn.2
 function avoid(){
     ev3_motorSetSpeed(motor_C, speed);
     ev3_motorSetSpeed(motor_D, speed);
     while (ultra_dist > 10) {
-    } else {
-        ev3_motorSetStopAction(motor_C, "hold");
-        ev3_motorSetStopAction(motor_D, "hold");
-        run_forward(-30);
-    }
+    } 
+    ev3_motorSetStopAction(motor_C, "hold");
+    ev3_motorSetStopAction(motor_D, "hold");
+    run_forward(-30);
 }
 
 // Qn.3
@@ -55,10 +54,10 @@ function around(){
     ev3_motorSetSpeed(motor_C, speed);
     ev3_motorSetSpeed(motor_D, speed);
     while (ultra_dist > 10) {
-    } else {
-        ev3_motorSetStopAction(motor_C, "hold");
-        ev3_motorSetStopAction(motor_D, "hold");
-        run_forward(-30);
-        turn_left(math_random());
     }
+    ev3_motorSetStopAction(motor_C, "hold");
+    ev3_motorSetStopAction(motor_D, "hold");
+    run_forward(-30);
+    turn_left(math_random());
+    
 }
