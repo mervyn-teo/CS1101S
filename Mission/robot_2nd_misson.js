@@ -1,45 +1,3 @@
-import {ev3_ambientLightIntensity,
-ev3_colorSensor,
-ev3_colorSensorBlue,
-ev3_colorSensorGetColor,
-ev3_colorSensorGreen,
-ev3_colorSensorRed,
-ev3_connected,
-ev3_gyroSensor,
-ev3_gyroSensorAngle,
-ev3_gyroSensorRate,
-ev3_hello,
-ev3_ledGetBrightness,
-ev3_ledLeftGreen,
-ev3_ledLeftRed,
-ev3_ledRightGreen,
-ev3_ledRightRed,
-ev3_ledSetBrightness,
-ev3_motorA,
-ev3_motorB,
-ev3_motorC,
-ev3_motorD,
-ev3_motorGetPosition,
-ev3_motorGetSpeed,
-ev3_motorSetSpeed,
-ev3_motorSetStopAction,
-ev3_motorStart,
-ev3_motorStop,
-ev3_pause,
-ev3_playSequence,
-ev3_reflectedLightIntensity,
-ev3_runForTime,
-ev3_runToAbsolutePosition,
-ev3_runToRelativePosition,
-ev3_speak,
-ev3_touchSensor1,
-ev3_touchSensor2,
-ev3_touchSensor3,
-ev3_touchSensor4,
-ev3_touchSensorPressed,
-ev3_ultrasonicSensor,
-ev3_ultrasonicSensorDistance,
-ev3_waitForButtonPress} from "ev3";
 
 const ultra_sound = ev3_ultrasonicSensor();
 let multiplier = 5; // multiplier to calibrate ultrasound sensor
@@ -78,6 +36,15 @@ function ultra_dist(){
     return ev3_ultrasonicSensorDistance(ultra_sound * multiplier);
 }//the distance ultrasound sensor senses
 
+function check_obsticle(){//Check if the robot is facing obsticle
+    if (ultra_dist() > 30){
+        return false;
+    } else{
+        return true;
+    }
+        
+}
+
 // Qn.1
 display(ev3_ultrasonicSensorDistance(ultra_sound * multiplier));
 
@@ -94,13 +61,18 @@ function avoid(){
 
 // Qn.3
 function around(){
-    ev3_motorSetSpeed(motor_C, speed);
-    ev3_motorSetSpeed(motor_D, speed);
+    ev3_motorSetSpeed(motor_C, 250);
+    ev3_motorSetSpeed(motor_D, 250);
     while (ultra_dist > 10) {
     }
     ev3_motorSetStopAction(motor_C, "hold");
     ev3_motorSetStopAction(motor_D, "hold");
     run_forward(-30);
-    turn_left(x => (x > 0.5 ? 1 : -1)(math_random()));
+    if (math_random() < 0.5){
+        turn_left(1);
+    } else{
+        turn_left(-1);
+    }
+    
     
 }
