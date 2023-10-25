@@ -1,3 +1,6 @@
+#Intro
+This is a code dump for my CS1101S in Y23/24 semester 1
+
 # CS1101S
 > Coding is the joy of relieving pain and suffering
 
